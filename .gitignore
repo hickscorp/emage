@@ -10,4 +10,5 @@ erl_crash.dump
 
 .deliver/releases/
 /rel/*/**
+
 *.sublime-workspace

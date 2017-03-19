@@ -1,0 +1,7 @@
+{
+  "folders": [{
+    "path": ".",
+    "folder_exclude_patterns": [".git", "_build", "deps"],
+    "file_exclude_patterns": [".sublime-project", ".beam"]
+  }],
+}
