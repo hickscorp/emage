@@ -1,0 +1,13 @@
+/_build
+/cover
+/db
+/deps
+/doc
+/*.ez
+/.fetch
+erl_crash.dump
+*.ez
+
+.deliver/releases/
+/rel/*/**
+*.sublime-workspace
