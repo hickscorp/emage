@@ -1,6 +1,7 @@
 defmodule EMage.TokensSupervisor do
   use Supervisor
 
+  @spec start_link :: {:ok, pid} | {:error, any}
   def start_link do
     Supervisor.start_link __MODULE__, :ok, name: __MODULE__
   end

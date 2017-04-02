@@ -31,10 +31,10 @@ defmodule EMage.Web.ImagesController do
     downloader = Downloader.by token, url
     processor = Processor.by token, downloader, url, stack
     case Future.result processor do
-      {:ok, %{mime_type: m, output: o}} ->
+      {:ok, %{mime_type: m, output: o} = s} ->
         conn
           |> put_resp_content_type(m)
-          |> send_resp(200, read o)
+          |> send_resp(200, read(o))
       {:error, msg} when is_binary(msg) ->
         conn
           |> put_resp_content_type("text/plain")

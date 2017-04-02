@@ -11,7 +11,7 @@ defmodule EMage.Future do
 
   # Public API.
 
-  @spec start_link(atom, list(any), list) :: {:ok, Future.t} | {:error, {atom, String.t}}
+  @spec start_link(atom, any, list) :: {:ok, t} | {:error, {atom, String.t}}
   def start_link(handler, args, opts \\ []) do
     GenServer.start_link __MODULE__, {handler, args}, opts
   end

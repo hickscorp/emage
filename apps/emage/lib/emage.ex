@@ -5,7 +5,14 @@ defmodule EMage do
   @type url :: String.t
   @type hash :: String.t
   @type filename :: String.t
+  @type operation :: String.t
+
+  @type op_code :: String.t
+  @type op_params :: String.t
+  @type operations :: list(operation)
+
   @type via :: {:via, Registry, {atom, any}}
+
   @type supervise_spec :: {:ok, {:supervisor.sup_flags, [Supervisor.Spec.spec]}} | :ignore
 
   @spec hash(String.t) :: hash

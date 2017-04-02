@@ -15,7 +15,15 @@ defmodule EMage.Worker.Downloader do
     pid
   end
 
-  @spec start_link(EMage.token, EMage.url) :: {:ok, Downloader.t}
+  @spec result_by(EMage.token, EMage.url) :: {:ok, String.t} | {:error, String.t}
+  def result_by(token, url) do
+    {:ok, result} = token
+      |> by(url)
+      |> Future.result
+    result
+  end
+
+  @spec start_link(EMage.token, EMage.url) :: {:ok, t}
   def start_link(token, url) do
     hash = EMage.hash url
     name = {:via, Registry, {:"EMage.Registry.Downloads.#{token}", hash}}
@@ -38,6 +46,7 @@ defmodule EMage.Worker.Downloader do
     end
   end
 
+  @spec download(EMage.url) :: {:ok, String.t} | {:error, String.t}
   def download(url) do
     case HTTPoison.get url do
       {:ok, %{body: data, status_code: sc}} ->
@@ -52,6 +61,7 @@ defmodule EMage.Worker.Downloader do
     end
   end
 
+  @spec open_file(String.t) :: {:ok, File.t} | {:error, String.t}
   def open_file(filename) do
     case File.open filename, [:write] do
       {:ok, _} = res -> res
@@ -59,6 +69,7 @@ defmodule EMage.Worker.Downloader do
     end
   end
 
+  @spec write(File.t, binary) :: :ok | {:error, String.t}
   def write(file, data) do
     case IO.binwrite file, data do
       :ok -> :ok
@@ -66,6 +77,7 @@ defmodule EMage.Worker.Downloader do
     end
   end
 
+  @spec close(File.t) :: :ok | {:error, String.t}
   def close(file) do
     case File.close file do
       :ok -> :ok

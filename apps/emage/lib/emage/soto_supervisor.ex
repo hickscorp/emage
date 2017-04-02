@@ -5,7 +5,6 @@ defmodule EMage.SOTOSupervisor do
 
   # Public API.
 
-  @spec start_link(EMage.token, atom, atom) :: {:ok, SOTOSupervisor.t}
   def start_link(token, mod, sub_reg) do
     name = {:via, Registry, {EMage.Registry.Tokens, {token, sub_reg}}}
     sup = Supervisor.start_link __MODULE__, mod, name: name
