@@ -37,8 +37,7 @@ defmodule EMage.Web.Mixfile do
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
 
-      {:emage, in_umbrella: true},
-      {:wobserver, "~> 0.1"}
+      {:emage, in_umbrella: true}
     ]
   end
 

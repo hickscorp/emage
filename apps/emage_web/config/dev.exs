@@ -17,5 +17,3 @@ config :emage_web, EMage.Web.Endpoint,
       ~r{lib/emage_web/templates/.*(eex)$}
     ]
   ]
-
-

@@ -5,7 +5,7 @@ defmodule EMage.Worker.Processor do
   alias EMage.Future
   alias EMage.Worker.{Downloader, Processor.State}
 
-  @operation_methods %{
+  @operation_func %{
     "lbl" => "label",
     "dep" => "depth",
     "siz" => "resize",
@@ -16,7 +16,7 @@ defmodule EMage.Worker.Processor do
     "gra" => "gravity",
     "geo" => "geometry"
   }
-  @operation_codes Map.keys @operation_methods
+  @operation_codes Map.keys @operation_func
 
   @behaviour EMage.Future.Handler
 
@@ -89,7 +89,7 @@ defmodule EMage.Worker.Processor do
   end
   def operation(%{image: image} = state, code, params) when code in @operation_codes do
     IO.puts "~> Operation #{code}: #{params}."
-    %{state | image: Mogrify.custom(image, @operation_methods[code], params)}
+    %{state | image: Mogrify.custom(image, @operation_func[code], params)}
   end
   # Unknown operation, just add a warning.
   def operation(%State{warnings: warnings} = state, code, _) do

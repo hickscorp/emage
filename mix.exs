@@ -23,8 +23,7 @@ defmodule EMage.Umbrella.Mixfile do
   defp deps(:prod) do
     [
       {:distillery, "~> 1.2"},
-      {:edeliver, "~> 1.4.2"},
-      {:wobserver, "~> 0.1"}
+      {:edeliver, "~> 1.4.2"}
     ]
   end
 end
