@@ -8,7 +8,8 @@
 erl_crash.dump
 *.ez
 
-.deliver/releases/
+/.deliver/releases/
 /rel/*/**
+config/*.secret.exs
 
 *.sublime-workspace
